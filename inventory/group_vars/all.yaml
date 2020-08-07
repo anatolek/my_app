@@ -1,0 +1,6 @@
+# Env variables
+env_name:      "dev"
+env_domain:    "tech.net"
+env_timezone:  "UTC"
+env_iu_url:    "https://{{ env_name }}.{{ env_domain }}"
+env_vault_url: "https://vault-{{ env_name }}.{{ env_domain }}:8200"

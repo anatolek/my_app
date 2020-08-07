@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: app_cluster
+  gather_facts: no
+  become: true
+  roles:
+    - role: app
+  tags: always
+#  vars:
+#    ansible_user: deployer

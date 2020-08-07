@@ -1,0 +1,6 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: no
+  tags: always
+  tasks: []

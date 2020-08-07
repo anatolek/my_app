@@ -1,0 +1,51 @@
+---
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: delegated
+  options:
+    managed: true
+    ansible_connection_options:
+      ansible_connection: ssh
+#      ansible_ssh_common_args: '-F /home/apedc/Documents/gitlab_projects/ansible/gtv/roles/billingapi/molecule/usw202.cse/ssh_config'
+lint: |
+  set -e
+  yamllint -c ../../linter_rules/yamllint.yaml .
+  ansible-lint -Rr ../../linter_rules/ansiblelint .
+platforms:
+  - name: app01
+provisioner:
+  name: ansible
+  inventory:
+    links:
+      hosts: ../../../../inventory/hosts.yaml
+      group_vars: ../../../../inventory/group_vars/
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  options:
+    v: true
+    tags: "app_install"
+    extra-vars: >-
+      app_version=2.20.1
+#  config_options:
+#    defaults:
+#      stdout_callback: yaml
+  log: false
+scenario:
+  test_sequence:
+    # - dependency
+    - lint
+    # - cleanup
+    # - destroy
+    - syntax
+    # - create
+    - prepare
+    - converge
+    - idempotence
+    # - side_effect
+    # - verify
+    # - cleanup
+    # - destroy
+verifier:
+  name: ansible

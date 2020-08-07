@@ -1,0 +1,11 @@
+all:
+  children:
+    localhosts:
+      hosts:
+        localhost: 
+          ansible_connection: local 
+          ansible_python_interpreter: python
+        core:
+          app_cluster:
+            hosts:
+              app01-dev.tech.net

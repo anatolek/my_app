@@ -1,0 +1,6 @@
+Host                             app01
+        HostName                 appp01-dev.tech.net
+        User                     deployer
+        IdentityFile             /tmp/deployer.pem
+        PreferredAuthentications publickey
+        Port                     22

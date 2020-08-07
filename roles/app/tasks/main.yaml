@@ -1,0 +1,15 @@
+---
+- name: Install APP
+  debug:
+    msg: "Installing APP of version {{ app_version }}"
+  tags:
+    - never
+    - app_install
+
+- name: Copy APP version to host
+  copy:
+    content: "{{ app_name }}: {{ app_version }}"
+    dest: /tmp/app_version
+  tags:
+    - never
+    - app_install
